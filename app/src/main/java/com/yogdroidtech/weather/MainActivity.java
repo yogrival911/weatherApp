@@ -1,19 +1,33 @@
 package com.yogdroidtech.weather;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.pdf.PdfDocument;
 import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -24,141 +38,94 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
-    String appid = "8931dea8ea47fe58dee9f3e02a31c049";
-    String lat = "28.7041";
-    String lon = "77.1025";
-    ImageView imageViewIcon;
-    TextView textViewTemp, textViewFeels,textViewDesc, textViewMin,textViewMax,textViewPress,textViewHumid,textViewVisible,textViewClouds;
-    TextView textViewCity, textViewWind;
-    SearchView searchView;
-    SharedPreferences sharedPreferences;
-    String savedCity;
+   ViewPager2 viewPager2;
+   TabLayout tabLayout;
+   SearchView searchView;
+   SharedPreferences sharedPreferences;
+   String savedCity;
+   String appid = "8931dea8ea47fe58dee9f3e02a31c049";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        savedCity = sharedPreferences.getString("savedCity", "delhi");
 
-        imageViewIcon = (ImageView)findViewById(R.id.imageViewIcon);
-        textViewFeels = (TextView)findViewById(R.id.textViewFeels);
-        textViewTemp = (TextView)findViewById(R.id.textViewTemp);
-        textViewDesc = (TextView)findViewById(R.id.textViewDesc);
-        textViewMin = (TextView)findViewById(R.id.textViewMin);
-        textViewMax = (TextView)findViewById(R.id.textViewMax);
-        textViewPress = (TextView)findViewById(R.id.textViewPress);
-        textViewHumid = (TextView)findViewById(R.id.textViewHumid);
-        textViewVisible = (TextView)findViewById(R.id.textViewVisible);
-        textViewClouds =(TextView)findViewById(R.id.textViewClouds);
-        textViewCity = (TextView)findViewById(R.id.textViewCity);
-        textViewWind = (TextView)findViewById(R.id.textViewWind);
-        searchView = (SearchView)findViewById(R.id.searchView);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
 
-        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        final String[] tabTitles = {"Weather", "AQI", "Corona"};
 
-        Retrofit retrofit = RetrofitClientInstance.getRetrofit();
-        RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
-        Call<DataLight> dataCall = retrofitInterface.getWeatherDataByCity(savedCity, appid);
-        dataCall.enqueue(new Callback<DataLight>() {
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        //TabLayoutMediator(tabLayout, viewPager2
+        TabLayoutMediator.TabConfigurationStrategy tabConfigurationStrategy =new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
-            public void onResponse(Call<DataLight> call, Response<DataLight> response) {
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                tab.setText(tabTitles[position]);
+//                tab.setIcon(tabIcon[position]);
+                tab.setTabLabelVisibility(TabLayout.TAB_LABEL_VISIBILITY_LABELED);
+            }
+        };
 
-                Log.i("yogesh", response.body().toString());
-                String iconCode = response.body().getWeather().get(0).getIcon();
-                String url = "https://openweathermap.org/img/wn/"+iconCode+"@2x.png";
-                Log.i("yogesh", url);
-                Picasso.with(getApplicationContext()).load(url).into(imageViewIcon);
-                textViewTemp.setText(response.body().getMain().getTemp().intValue()+ "\u2103");
-                textViewFeels.setText("Feels like "+response.body().getMain().getFeelsLike().intValue()+ "\u2103" );
-                String description = response.body().getWeather().get(0).getDescription();
-                textViewDesc.setText(description.substring(0,1).toUpperCase()+description.substring(1).toLowerCase());
-                textViewMin.setText(response.body().getMain().getTempMin().intValue()+"\u2103");
-                textViewMax.setText(response.body().getMain().getTempMax().intValue()+"\u2103");
-                textViewPress.setText(response.body().getMain().getPressure()+" mBar");
-                textViewHumid.setText(response.body().getMain().getHumidity()+" %");
-                textViewClouds.setText(response.body().getClouds().getAll()+" %");
-                textViewVisible.setText(response.body().getVisibility()+" meters");
-                textViewCity.setText(response.body().getName()+","+response.body().getSys().getCountry());
-                textViewWind.setText(response.body().getWind().getSpeed() + " m/s");
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        viewPager2 = (ViewPager2) findViewById(R.id.viewPager2);
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        PagerAdapter pagerAdapter = new PagerAdapter(this);
+        viewPager2.setAdapter(pagerAdapter);
+        new TabLayoutMediator(tabLayout, viewPager2, tabConfigurationStrategy).attach();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        MenuItem myActionMenuItem  = menu.findItem(R.id.searchView);
+        SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                Log.i("yogesh", ""+s);
+
+                Retrofit retrofit = RetrofitClientInstance.getRetrofit();
+                RetrofitInterface retrofitInterface = retrofit.create(RetrofitInterface.class);
+
+                Call<CoordinateCity> coordinateCityCall = retrofitInterface.getCityToCo(s,appid);
+                coordinateCityCall.enqueue(new Callback<CoordinateCity>() {
                     @Override
-                    public boolean onQueryTextSubmit(String s) {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("savedCity", s);
-                        editor.commit();
-                        Call<DataLight> dataCall = retrofitInterface.getWeatherDataByCity(s, appid);
-                        dataCall.enqueue(new Callback<DataLight>() {
-                            @Override
-                            public void onResponse(Call<DataLight> call, Response<DataLight> response) {
-                                Log.i("yogesh", response.body().toString());
-                                Log.i("yogesh", response.body().toString());
-                                String iconCode = response.body().getWeather().get(0).getIcon();
-                                String url = "https://openweathermap.org/img/wn/"+iconCode+"@2x.png";
-                                Log.i("yogesh", url);
-                                Picasso.with(getApplicationContext()).load(url).into(imageViewIcon);
-                                textViewTemp.setText(response.body().getMain().getTemp().intValue()+ "\u2103");
-                                textViewFeels.setText("Feels like "+response.body().getMain().getFeelsLike().intValue()+ "\u2103" );
-                                String description = response.body().getWeather().get(0).getDescription();
-                                textViewDesc.setText(description.substring(0,1).toUpperCase()+description.substring(1).toLowerCase());
-                                textViewMin.setText(response.body().getMain().getTempMin().intValue()+"\u2103");
-                                textViewMax.setText(response.body().getMain().getTempMax().intValue()+"\u2103");
-                                textViewPress.setText(response.body().getMain().getPressure()+" mBar");
-                                textViewHumid.setText(response.body().getMain().getHumidity()+" %");
-                                textViewClouds.setText(response.body().getClouds().getAll()+" %");
-                                textViewVisible.setText(response.body().getVisibility()+" meters");
-                                textViewCity.setText(response.body().getName()+","+response.body().getSys().getCountry());
-                                textViewWind.setText(response.body().getWind().getSpeed() + " m/s");
-                            }
+                    public void onResponse(Call<CoordinateCity> call, Response<CoordinateCity> response) {
+                       if(response.body()!=null){
+                           Log.i("yogesh", response.body().toString());
+                           SharedPreferences.Editor editor = sharedPreferences.edit();
+                           editor.putString("lat",response.body().getCoord().getLat().toString());
+                           editor.putString("lon", response.body().getCoord().getLon().toString());
+                           editor.putString("savedCity", s);
+                           editor.commit();
+                           finish();
+                           startActivity(getIntent());
+                       }
+                       else{
+                           Toast.makeText(MainActivity.this, "City not found", Toast.LENGTH_SHORT).show();
+                       }
 
-                            @Override
-                            public void onFailure(Call<DataLight> call, Throwable t) {
-                                Log.i("yogesh", t.toString());
-                            }
-                        });
-                        return true;
                     }
 
                     @Override
-                    public boolean onQueryTextChange(String s) {
-                        return false;
+                    public void onFailure(Call<CoordinateCity> call, Throwable t) {
+                        Log.i("yogesh", t.toString());
                     }
                 });
+                searchView.clearFocus();
 
-
-                progressBar.setVisibility(View.INVISIBLE);
+                return true;
             }
 
             @Override
-            public void onFailure(Call<DataLight> call, Throwable t) {
-                Log.i("yogesh", t.toString());
-
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
-//        Call<SuperData> dataCall = retrofitInterface.getWeatherData(lat,lon,appid);
 
-//        dataCall.enqueue(new Callback<SuperData>() {
-//            @Override
-//            public void onResponse(Call<SuperData> call, Response<SuperData> response) {
-//
-//                Log.i("yogesh", response.body().toString());
-//                String iconCode = response.body().getCurrent().getWeather().get(0).getIcon();
-//                String url = "https://openweathermap.org/img/wn/"+iconCode+"@2x.png";
-//                Log.i("yogesh", url);
-//                Picasso.with(getApplicationContext()).load(url).into(imageViewIcon);
-//                textViewTemp.setText(response.body().getCurrent().getTemp().toString());
-//                progressBar.setVisibility(View.INVISIBLE);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<SuperData> call, Throwable t) {
-//
-//                Log.i("yogesh", t.toString());
-//            }
-//        });
-
-
+        return true;
     }
+
 }
