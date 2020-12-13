@@ -41,7 +41,7 @@ public class WeatherFragment extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         String lat = sharedPreferences.getString("lat","30" );
         String lon = sharedPreferences.getString("lon", "70");
-        savedCity =  sharedPreferences.getString("savedCity", "");
+        savedCity =  sharedPreferences.getString("savedCity", "delhi");
         imageViewIcon = (ImageView)view.findViewById(R.id.imageViewIcon);
         textViewFeels = (TextView)view.findViewById(R.id.textViewFeels);
         textViewTemp = (TextView)view.findViewById(R.id.textViewTemp);

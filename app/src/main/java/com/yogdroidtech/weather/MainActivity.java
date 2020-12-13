@@ -51,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
 
         final String[] tabTitles = {"Weather", "AQI", "Corona"};
 

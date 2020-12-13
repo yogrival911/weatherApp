@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/coronaLineChart"
+                android:layout_width="match_parent"
+                android:layout_height="213dp"
+                android:background="#FFFFFF">
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#FBD89E"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:gravity="fill">
+
+                    <TextView
+                        android:id="@+id/textViewTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_column="0"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center"
+                        android:text="Total" />
+
+                    <TextView
+                        android:id="@+id/textViewDeaths"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_column="1"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center"
+                        android:text="Deaths" />
+
+                    <TextView
+                        android:id="@+id/textViewRecov"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_column="2"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center"
+                        android:text="Recovered" />
+                </TableRow>
+
+            </TableLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
+                android:elevation="1dp"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+                />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

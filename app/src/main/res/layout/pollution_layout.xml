@@ -29,7 +29,7 @@
                 android:text="PM 2.5 " />
 
             <TextView
-                android:id="@+id/textViewPM25"
+                android:id="@+id/textViewDeaths"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="1"

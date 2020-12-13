@@ -24,7 +24,7 @@ public class PagerAdapter extends FragmentStateAdapter {
                 createdFragment = new Pollution();
                 break;
             default:
-                createdFragment =new WeatherFragment();
+                createdFragment =new CoronaFrag();
                 break;
         }
         return createdFragment;

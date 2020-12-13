@@ -2,14 +2,12 @@ package com.yogdroidtech.weather;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -53,7 +51,7 @@ public class Pollution extends Fragment {
         lat = sharedPreferences.getString("lat", "20");
         lon = sharedPreferences.getString("lon", "45");
 
-        textViewPM25 = (TextView)view.findViewById(R.id.textViewPM25);
+        textViewPM25 = (TextView)view.findViewById(R.id.textViewDeaths);
         textViewPM10 = (TextView)view.findViewById(R.id.textViewPM10);
         textViewCO = (TextView)view.findViewById(R.id.textViewCO);
         textViewNO = (TextView)view.findViewById(R.id.textViewNO);
