@@ -6,44 +6,20 @@
     android:layout_height="match_parent">
 
 
-    <com.github.anastr.speedviewlib.SpeedView
-
-        android:id="@+id/speedView"
-        android:layout_width="312dp"
-        android:layout_height="347dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textViewAQI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/speedView" />
-
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="400dp"
+        android:layout_height="254dp"
         android:stretchColumns="*"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAQI"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/speedView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAQI">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,7 +40,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -84,7 +60,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -104,7 +80,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -124,7 +100,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -144,7 +120,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -164,7 +140,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -184,7 +160,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="2dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -203,5 +179,27 @@
 
 
     </TableLayout>
+
+    <TextView
+        android:id="@+id/textViewAQI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="276dp"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.anastr.speedviewlib.SpeedView
+
+        android:id="@+id/speedView"
+        android:layout_width="320dp"
+        android:layout_height="294dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

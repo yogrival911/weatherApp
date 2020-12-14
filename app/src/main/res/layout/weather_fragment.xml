@@ -6,236 +6,549 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:stretchColumns="*"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDesc"
-        tools:layout_editor_absoluteX="16dp">
+        android:layout_height="match_parent">
 
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:gravity="center_horizontal|left"
-                android:text="Min. Temp" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textViewMin"
+                <TextView
+                    android:id="@+id/textViewCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="62dp"
+                    android:text="21CC"
+                    android:textSize="55sp"
+                    app:layout_constraintEnd_toStartOf="@+id/imageViewIcon"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageViewIcon"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textViewTemp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TableLayout
+                    android:id="@+id/tableLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:stretchColumns="*"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDesc">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:gravity="center_horizontal|left"
+                            android:text="Min. Temp" />
+
+                        <TextView
+                            android:id="@+id/textViewMin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:text="Max. Temp" />
+
+                        <TextView
+                            android:id="@+id/textViewMax"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:text="Pressure" />
+
+                        <TextView
+                            android:id="@+id/textViewPress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:text="Humidity" />
+
+                        <TextView
+                            android:id="@+id/textViewHumid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:text="Visibility" />
+
+                        <TextView
+                            android:id="@+id/textViewVisible"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:text="Clouds" />
+
+                        <TextView
+                            android:id="@+id/textViewClouds"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:text="Wind Speed" />
+
+                        <TextView
+                            android:id="@+id/textViewWind"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_column="0"
+                            android:layout_marginStart="40dp"
+                            android:text="UV index" />
+
+                        <TextView
+                            android:id="@+id/textViewUV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
+                            android:text="23" />
+                    </TableRow>
+
+
+
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/textViewDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewIcon"
+                    app:layout_constraintStart_toStartOf="@+id/imageViewIcon"
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewIcon" />
+
+                <TextView
+                    android:id="@+id/textViewFeels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewTemp"
+                    app:layout_constraintStart_toStartOf="@+id/textViewTemp"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTemp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textViewCity" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                android:gravity="center_horizontal"
+                android:stretchColumns="*">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:text="Max. Temp" />
+                    <TextView
+                        android:id="@+id/d1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day" />
 
-            <TextView
-                android:id="@+id/textViewMax"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                    <ImageView
+                        android:id="@+id/d1icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d1Clear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Clear" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+                    <TextView
+                        android:id="@+id/d1CloudPer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Cloud %" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:text="Pressure" />
+                    <TextView
+                        android:id="@+id/d1MinMax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Min/Max" />
+                </TableRow>
 
-            <TextView
-                android:id="@+id/textViewPress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+                    <TextView
+                        android:id="@+id/d2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:text="Humidity" />
+                    <ImageView
+                        android:id="@+id/d2icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d2Clear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Clear" />
 
-            <TextView
-                android:id="@+id/textViewHumid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                    <TextView
+                        android:id="@+id/d2CloudPer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Cloud %" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+                    <TextView
+                        android:id="@+id/d2MinMax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Min/Max" />
+                </TableRow>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:text="Visibility" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textViewVisible"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                    <TextView
+                        android:id="@+id/d3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+                    <ImageView
+                        android:id="@+id/d3icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d3Clear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Clear" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:text="Clouds" />
+                    <TextView
+                        android:id="@+id/d3CloudPer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Cloud %" />
 
-            <TextView
-                android:id="@+id/textViewClouds"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                    <TextView
+                        android:id="@+id/d3MinMax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Min/Max" />
+                </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:text="Wind Speed" />
+                    <TextView
+                        android:id="@+id/d4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day" />
 
-            <TextView
-                android:id="@+id/textViewWind"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                    <ImageView
+                        android:id="@+id/d4icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d4Clear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Clear" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+                    <TextView
+                        android:id="@+id/d4CloudPer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Cloud %" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_marginStart="40dp"
-                android:text="UV index" />
+                    <TextView
+                        android:id="@+id/d4MinMax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Min/Max" />
+                </TableRow>
 
-            <TextView
-                android:id="@+id/textViewUV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="23" />
-        </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <TextView
+                        android:id="@+id/d5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day" />
 
-    </TableLayout>
+                    <ImageView
+                        android:id="@+id/d5icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d5Clear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Clear" />
 
-    <TextView
-        android:id="@+id/textViewCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/d5CloudPer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Cloud %" />
 
-    <ImageView
-        android:id="@+id/imageViewIcon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCity"
-        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d5MinMax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Min/Max" />
+                </TableRow>
 
-    <TextView
-        android:id="@+id/textViewTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="38dp"
-        android:text="21CC"
-        android:textSize="55sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewIcon"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCity" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textViewFeels"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="TextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTemp" />
+                    <TextView
+                        android:id="@+id/d6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day" />
 
-    <TextView
-        android:id="@+id/textViewDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="99dp"
-        android:text="TextView"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewIcon" />
+                    <ImageView
+                        android:id="@+id/d6icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d6Clear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Clear" />
+
+                    <TextView
+                        android:id="@+id/d6CloudPer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Cloud %" />
+
+                    <TextView
+                        android:id="@+id/d6MinMax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Min/Max" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/d7"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="Day" />
+
+                    <ImageView
+                        android:id="@+id/d7icon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+                    <TextView
+                        android:id="@+id/d7Clear"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Clear" />
+
+                    <TextView
+                        android:id="@+id/d7CloudPer"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Cloud %" />
+
+                    <TextView
+                        android:id="@+id/d7MinMax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Min/Max" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

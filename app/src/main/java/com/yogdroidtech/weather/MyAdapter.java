@@ -33,6 +33,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.textViewStateTotal.setText(coronaData.getStatewise().get(position).getConfirmed()+"");
         holder.textViewStateDeaths.setText(coronaData.getStatewise().get(position).getDeaths()+"");
         holder.textViewStateRecov.setText(coronaData.getStatewise().get(position).getRecovered()+"");
+        holder.textViewStateActive.setText(coronaData.getStatewise().get(position).getActive()+"");
 
 
     }
@@ -44,13 +45,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewState,textViewStateTotal, textViewStateDeaths, textViewStateRecov;
+        TextView textViewState,textViewStateTotal, textViewStateDeaths, textViewStateRecov, textViewStateActive;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewStateTotal = (TextView)itemView.findViewById(R.id.textViewStateTotal);
             textViewStateDeaths = (TextView)itemView.findViewById(R.id.textViewStateDeath);
             textViewStateRecov = (TextView)itemView.findViewById(R.id.textViewStateRecov);
             textViewState = (TextView)itemView.findViewById(R.id.textViewState);
+            textViewStateActive = (TextView)itemView.findViewById(R.id.textViewStateActive);
 
         }
     }

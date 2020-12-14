@@ -35,7 +35,7 @@ import retrofit2.Retrofit;
 
 public class CoronaFrag extends Fragment {
     LineChart coronaLineChart;
-    TextView textViewTotal,textViewDeaths,textViewRecov;
+    TextView textViewTotal,textViewDeaths,textViewRecov, textViewActive;
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     @Nullable
@@ -48,6 +48,7 @@ public class CoronaFrag extends Fragment {
         textViewTotal = (TextView)view.findViewById(R.id.textViewTotal);
         textViewDeaths = (TextView)view.findViewById(R.id.textViewDeaths);
         textViewRecov = (TextView)view.findViewById(R.id.textViewRecov);
+        textViewActive =(TextView)view.findViewById(R.id.textViewActive);
 
         recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         linearLayoutManager = new LinearLayoutManager(getContext());
@@ -79,8 +80,11 @@ public class CoronaFrag extends Fragment {
                 textViewTotal.setText("Cases"+"\n"+response.body().getStatewise().get(0).getConfirmed());
                 textViewDeaths.setText("Deaths"+"\n"+response.body().getStatewise().get(0).getDeaths());
                 textViewRecov.setText("Recovered"+"\n"+response.body().getStatewise().get(0).getRecovered());
+                textViewActive.setText("Active"+"\n"+response.body().getStatewise().get(0).getActive());
 
-                LineDataSet lineDataSet = new LineDataSet(dataValsCorona,"Daily Confirmed Cases");
+
+                LineDataSet lineDataSet = new LineDataSet(dataValsCorona,"Daily Confirmed Cases in India till "
+                        + response.body().getCasesTimeSeries().get(response.body().getCasesTimeSeries().size()-1).getDateymd());
 
                 lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
                 lineDataSet.setHighlightEnabled(true);
